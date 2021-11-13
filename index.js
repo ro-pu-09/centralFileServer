@@ -4,14 +4,32 @@ const Busyboy= require('busboy')
 const path=require('path')
 const app= express()
 
-app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/index.html')
+app.get('/upload',(req,res)=>{
+    res.sendFile(__dirname+'/htmlFiles/upload.html')
 })
 
-app.get('/host',(req,res)=>{
-     res.sendFile(__dirname+'/host.js')
-  
+
+app.get('/hostUpload',(req,res)=>{
+     res.sendFile(__dirname+'/hostUpload.js')
+     
 })
+
+app.get('/',(req,res)=>{
+    fs.readdir("/Volumes/Extreme SSD/movies/",(err,files)=>{
+      if(err)console.log(err)
+      else{
+        files.forEach(file=>{
+          console.log(file)
+        })
+      }
+      res.sendFile(__dirname+'/htmlFiles/viewFiles.html')
+    })
+})
+
+app.get('/viewFile',(req,res)=>{
+  res.sendFile(__dirname+'/clientViewFile.js')
+})
+
 
 app.get('/test',(req,res)=>{
   console.log("received the test")
