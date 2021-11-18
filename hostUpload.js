@@ -12,9 +12,9 @@ window.onload=function(){
         }).then(()=>{
             console.log("done uploading")
             document.getElementById('status').innerHTML="done uploading"
-        }).catch(()=>{
+        }).catch((err)=>{
             console.log("error in uploading ")
-            document.getElementById('status').innerHTML="error in uploading"
+            document.getElementById('status').innerHTML="error in uploading \n"+err
         })
     })
 }
